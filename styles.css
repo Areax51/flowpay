@@ -6,12 +6,10 @@
   --header-height: 3.5rem;
 
   /*========== Colors ==========*/
-  /*Color mode HSL(hue, saturation, lightness)*/
   --first-color: #fceeee;
-  --text-color: hsl(38, 8%, 8%);
+  --text-color: #000;
 
   /*========== Font and typography ==========*/
-  /*.5rem = 8px | 1rem = 16px ...*/
   --body-font: "Space Grotesk", sans-serif;
   --biggest-font-size: 2.375rem;
   --normal-font-size: 0.938rem;
@@ -67,11 +65,10 @@ img {
 .header {
   position: fixed;
   width: 100%;
-  background-color: transparent;
-  align-items: center;
   top: 0;
   left: 0;
-  z-index: 100;
+  background-color: transparent;
+  z-index: 1000;
 }
 
 .nav {
@@ -79,6 +76,11 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: var(--first-color);
+  position: fixed;
+  width: 100%;
+  top: 0;
 }
 
 .nav_logo,
@@ -100,36 +102,43 @@ img {
 .nav_list {
   text-align: center;
   display: flex;
-  flex-direction: column;
-  row-gap: 2rem;
+  flex-direction: row;
+  column-gap: 2rem;
 }
+
 .nav_link {
   color: var(--text-color);
 }
+
 .show-menu {
   top: 0;
 }
-@media screen and (max-width: 767px) {
-  body {
-    background-color: black;
-  }
 
+.nav_close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
   .nav_menu {
     position: fixed;
     background-color: var(--first-color);
     left: 0;
-    /* top:-100% */
+    top: -100%;
     width: 100%;
     padding: 5rem 0 4rem;
-    transition: all 0.5s;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0cap;
+    transition: all 0.4s ease-in-out;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
 }
-/* hoome */
+
 .home {
   background-color: var(--first-color);
   padding: 10rem 0 2rem;
-  min-height: 100vh;
+  height: 100vh;
   display: grid;
 }
 
@@ -143,44 +152,44 @@ img {
   align-items: center;
 }
 
-.home_tittle {
+.home_title {
   font-size: var(--biggest-font-size);
   margin: 0.75rem 0;
 }
 
 .home_button {
   margin-top: 2rem;
-  background-color: black;
+  padding: 1rem 2rem;
   color: white;
-  padding: 1rem 1.5rem;
+  background-color: rgb(20, 8, 8);
   display: inline-block;
-  border-radius: 0.2rem;
+  border-radius: 0.5rem;
   transition: 0.5s;
 }
 
 .home_button:hover {
-  background-color: #121212;
+  background-color: rgb(10, 5, 5);
   padding: 1rem 1.6rem;
 }
 
-.home_img img {
+.home_image img {
   width: 620px;
 }
 
-.home_img {
+.home_image {
   justify-self: center;
-
-  animation: bounce 0.9s infinite alternate;
+  animation: bounce 1.4s infinite alternate;
 }
-/* Animation */
+
 @keyframes bounce {
   0% {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(40px);
+    transform: translateY(30px);
   }
 }
+
 .home_footer {
   display: flex;
   justify-content: center;
@@ -188,30 +197,37 @@ img {
   font-size: var(--smaller-font-size);
   align-self: flex-end;
 }
-@media screen and(max-width:320px) {
+
+@media screen and (max-width: 320px) {
   .home {
     padding: 7rem;
   }
 }
-@media screen and(min-width:767px) {
+
+@media screen and (min-width: 767px) {
   .nav {
-    height: calc(var(--header-height)+1.5rem);
+    height: calc(var(--header-height) + 1.5rem);
   }
-  .nav_toggle .nav_close {
+
+  .nav_toggle,
+  .nav_close {
     display: none;
   }
+
   .nav_list {
     flex-direction: row;
-    column-gap: 3.5rem;
+    column-gap: 3rem;
   }
 }
-/* for laeger devices */
-@media screen and(min-width:1024px) {
+
+/* large screens  */
+@media screen and (min-width: 1024px) {
   .home_container {
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
-    column-gap: 2rems;
+    column-gap: 2rem;
   }
+
   .container {
     margin-left: auto;
     margin-right: auto;
